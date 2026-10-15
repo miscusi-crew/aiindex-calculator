@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculator</title>
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="base.css">
+<style>
+  main{max-width:46rem}
+  .wrap{display:grid;grid-template-columns:minmax(0,20rem) 1fr;gap:1.25rem;margin-top:.75rem}
+  @media (max-width:40rem){.wrap{grid-template-columns:1fr}}
+  .screen{border:1px solid var(--line);border-radius:.75rem;background:var(--card);padding:.75rem 1rem;text-align:right;margin-bottom:.5rem}
+  .expr{color:var(--muted);min-height:1.4rem;font-variant-numeric:tabular-nums;word-break:break-all}
+  .val{font-size:2.4rem;font-weight:700;font-variant-numeric:tabular-nums;word-break:break-all;line-height:1.2}
+  .keys{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem}
+  .keys button{padding:.85rem 0;font-size:1.2rem;font-weight:600}
+  .keys .op{background:color-mix(in srgb,var(--accent) 12%,var(--card))}
+  .keys .eq{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+  .keys .zero{grid-column:span 2}
+  h2{font-size:1rem;margin:0 0 .4rem;display:flex;justify-content:space-between}
+  ol{list-style:none;padding:0;margin:0;display:grid;gap:.2rem;max-height:22rem;overflow:auto}
+  ol button{width:100%;text-align:right;border-color:transparent;background:transparent;font-variant-numeric:tabular-nums}
+  ol small{display:block;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Calculator</h1>
+  <p class="sub">Works with your keyboard too. Click a result in the history to use it again.</p>
+  <div class="wrap">
+    <div>
+      <div class="screen"><div class="expr" id="expr"></div><div class="val" id="val" aria-live="polite">0</div></div>
+      <div class="keys" id="keys">
+        <button data-k="C">C</button><button data-k="±">±</button><button data-k="%">%</button><button data-k="/" class="op" aria-label="divide">÷</button>
+        <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="*" class="op" aria-label="times">×</button>
+        <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="-" class="op" aria-label="minus">−</button>
+        <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="+" class="op" aria-label="plus">+</button>
+        <button data-k="0" class="zero">0</button><button data-k=".">.</button><button data-k="=" class="eq" aria-label="equals">=</button>
+      </div>
+    </div>
+    <section><h2>History <button id="clear-h" style="padding:.1rem .5rem;font-size:.8rem">Clear</button></h2><ol id="hist"></ol></section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
